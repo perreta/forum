@@ -10,7 +10,7 @@ import NotYourProfile from "./NotYourProfile";
 import Login from "./Login";
 import Signup from "./Signup";
 import NotFound from "./NotFound"
-// import Search from "./Search"
+import Search from "./Search"
 
 import { Switch, Route } from "react-router-dom";
 
@@ -31,6 +31,7 @@ function Main({ user, setUser }){
         .then((data) => setCategoryArray(data))
     }, []);
 
+    console.log(categoryArray)
     const category = categoryArray.map((category) => {
         return (
             <Category
@@ -141,9 +142,9 @@ function Main({ user, setUser }){
                         <NotYourProfile user={otherUserProfile} setUser={setUser} enableAdmin={enableAdmin} setEnableAdmin={setEnableAdmin}/>
                     </Route>
 
-                    {/* <Route exact path="/search">
-                        <Search user={user} setURLTopic={setURLTopic} urlCategory={urlCategory}/>
-                    </Route>*/}
+                    <Route exact path="/search">
+                        <Search user={user} setURLTopic={setURLTopic} urlTopic={urlTopic} urlCategory={urlCategory} setURLCategory={setURLCategory}/>
+                    </Route>
 
                     <Route exact path="/*">
                         <NotFound />

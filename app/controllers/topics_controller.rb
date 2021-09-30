@@ -1,5 +1,5 @@
 class TopicsController < ApplicationController
-    # skip_before_action :authorize, only: [:index, :show] 
+    skip_before_action :authorize, only: [:index, :show] 
 
     # GET /topics
     def index

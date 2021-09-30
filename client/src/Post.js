@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Form, Button, TextArea, Header, Image } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 
-function Post({ user, post, id, content, username, avatar, created, updated, createdAt, updatedAt, postArray, setPostArray, topic, setOtherUserProfile, enableAdmin }){
+function Post({ user, post, topic, id, content, username, avatar, created, updated, createdAt, updatedAt, postArray, setPostArray, setOtherUserProfile, enableAdmin }){
     
     const [isClicked, setIsClicked] = useState(false);
     const [updatedText, setUpdatedText] = useState(content);
@@ -57,6 +57,7 @@ function Post({ user, post, id, content, username, avatar, created, updated, cre
         setOtherUserProfile(post.user)
     }
     
+    console.log(post)
     return(
         <>
             <h1>hello from Post</h1>
@@ -135,6 +136,20 @@ function Post({ user, post, id, content, username, avatar, created, updated, cre
                             Delete
                         </Button>
                     </Form>
+                )}
+                
+                {user.username === username ? (
+                    <>
+                        <Button
+                            onClick={handleEditClick}
+                            className={!isClicked ? "edit" : "hidden"}
+                        >
+                            Edit
+                        </Button>
+                        
+                    </>
+                ) : (
+                    null
                 )}
 
             </div>

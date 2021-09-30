@@ -20,7 +20,7 @@ function Category({ category, subject, picture, created, updated, createdAt, upd
                         <h2 onClick={handleClick}>{subject}</h2> 
                     </div>
                 </Link>
-                <p>Last post: {updated}</p>     
+                <p style={{fontWeight:"bold"}}>Last post: {updated}</p>     
             </div>
         </>
     )

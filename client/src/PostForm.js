@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Form, TextArea, Button } from "semantic-ui-react";
 
-function PostForm({ setPostArray, user, urlTopic }) {
+function PostForm({ setPostArray, user, topic }) {
     
     const [content, setContent] = useState("");
 
@@ -10,7 +10,7 @@ function PostForm({ setPostArray, user, urlTopic }) {
         const newPost = {
             content: content,
             user_id: user.id,
-            topic_id: urlTopic.id
+            topic_id: topic.id
         };
         fetch("/posts", {
             method: "POST",

@@ -35,8 +35,7 @@ function NavBar({ user }){
                     <Menu.Item>
                         <NavLink
                             strict
-                            to={`/profile`}
-                            //${user.username}
+                            to={`/profile/${user.username}`}
                             style={{ color: "grey" }}
                             activeStyle={{ fontWeight: "bold", color: "black" }}
                     >

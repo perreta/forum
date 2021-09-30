@@ -25,7 +25,7 @@ function PostContainer({ user, category, topic, setOtherUserProfile, enableAdmin
                 username={post.user.username}
                 avatar={post.user.profile_picture}
                 created={post.created}
-                updatedDate={post.updated}
+                updated={post.updated}
                 createdAt={post.created_at}
                 updatedAt={post.updated_at}
                 postArray={postArray}

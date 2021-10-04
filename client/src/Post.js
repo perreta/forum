@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Form, Button, TextArea, Header, Image } from "semantic-ui-react";
+import { Form, Container, Button, TextArea, Header, Image } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 
 function Post({ user, post, topic, id, content, username, avatar, created, updated, createdAt, updatedAt, postArray, setPostArray, setOtherUserProfile, enableAdmin }){
@@ -41,7 +41,6 @@ function Post({ user, post, topic, id, content, username, avatar, created, updat
         const updatedPostsArray = postArray.map((post) => {
             return post.id === updatedPost.id ? updatedPost : post
         });
-        // console.log(updatedPostsArray)
         setPostArray(updatedPostsArray);
     }
 
@@ -57,10 +56,8 @@ function Post({ user, post, topic, id, content, username, avatar, created, updat
         setOtherUserProfile(post.user)
     }
     
-    console.log(post)
     return(
-        <>
-            <h1>hello from Post</h1>
+        <Container>
             <div
                 className="post"
                 style={{
@@ -109,7 +106,13 @@ function Post({ user, post, topic, id, content, username, avatar, created, updat
                         }}>
                             {content}
                         </p>
-                        {/* <button className={enableAdmin ? "admin-delete" : "hidden"} onClick={handleAdminDelete}>Admin Delete</button> */}
+                        <br/>
+
+                        <div className={enableAdmin ? "admin-delete" : "hidden"}>
+                            <Button onClick={handleRemove}>Admin Delete</Button>
+                        </div>
+                        <br/>
+
                     </>
                 ) : (
                     <Form 
@@ -130,30 +133,30 @@ function Post({ user, post, topic, id, content, username, avatar, created, updat
                             control={TextArea}
                             value={updatedText}
                         />
-                        <Button>Update</Button>
-                        <Button onClick={handleEditClick}>Cancel</Button>
-                        <Button onClick={handleRemove} className="remove">
+                        <Button secondary>Update</Button>
+                        <Button  onClick={handleEditClick}>Cancel</Button>
+                        <Button negative onClick={handleRemove} className="remove">
                             Delete
                         </Button>
                     </Form>
                 )}
                 
                 {user.username === username ? (
-                    <>
+                    <div className={!isClicked ? "edit" : "hidden"}>
                         <Button
                             onClick={handleEditClick}
-                            className={!isClicked ? "edit" : "hidden"}
                         >
                             Edit
                         </Button>
                         
-                    </>
+                    </div>
                 ) : (
                     null
                 )}
 
             </div>
-        </>
+            <br/>
+        </Container>
     )
 }
 export default Post

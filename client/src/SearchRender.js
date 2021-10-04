@@ -9,14 +9,10 @@ function SearchRender({ user, searchTerm, urlTopic, setURLTopic, urlCategory, se
         fetch("/topics")
         .then((resp) => resp.json())
         .then((data) => {
-            console.log(data)
             setSearchArray(data.filter((thread) => {
                 return (
                     thread.title.toLowerCase().includes(searchTerm.toLowerCase()) 
                     || thread.category.subject.toLowerCase().includes(searchTerm.toLowerCase())
-                    // || thread.posts.map((post) => {
-                    //     post.content.toLowerCase().includes(searchTerm.toLowerCase())
-                    // })
                 )
             }))
         })

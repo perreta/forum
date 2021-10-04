@@ -1,12 +1,25 @@
 import { NavLink } from "react-router-dom";
-import { Menu } from "semantic-ui-react";
 import { useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { Menu, Image } from "semantic-ui-react";
+
 
 function NavBar({ user }){
+
+    // function handleLogout() {
+    //     fetch("/logout", {
+    //         method: "DELETE",
+    //     })
+    //     .then((r) => {
+    //         // console.log(r);
+    //         setUser(null);
+    //         history.push("/");
+    //     });
+    // }
+    
     return (
         <>
-            <h1>hello from NavBar</h1>
-            <Menu style={{marginTop:"0px"}}>
+            <Menu>
 
                 <Menu.Item>
                     <NavLink
@@ -43,16 +56,40 @@ function NavBar({ user }){
                         </NavLink>
                     </Menu.Item> 
                 ) : (null)}
-
-                {user ? (
-                    <Menu.Item>
-                        <Menu.Header style={{ color: "grey", cursor: "pointer"}}
-                            //onClick={handleLogout} 
-                        >
-                            Logout
-                        </Menu.Header>
+                
+                <Menu.Menu position='right'>  
+                    
+                    <Menu.Item>    
+                        <NavLink to="/search">    
+                            <img
+                            src="https://i.imgur.com/7A9gGKJ.png"
+                            alt="search"
+                            style={{
+                                float: "right",
+                                height: "45px",
+                            }}
+                            />
+                        </NavLink>
                     </Menu.Item>
-                ) : null}
+
+                    {user ? (
+                        <Menu.Item>
+                            <NavLink to={`/profile/${user.username}`}>    
+                                <Image
+                                    src={user.profile_picture}
+                                    alt="profile"
+                                    style={{
+                                        float: "right",
+                                        height: "50px",
+                                    }}
+                                />
+                            </NavLink>
+                        </Menu.Item>
+                    ) : (
+                        null
+                    )}
+                
+                </Menu.Menu>
             </Menu>
         </>
     )

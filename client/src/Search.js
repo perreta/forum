@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Input } from 'semantic-ui-react'
+import { Form, Input, Button } from 'semantic-ui-react'
 import SearchRender from "./SearchRender";
 
 function Search({ user, urlTopic, setURLTopic, urlCategory, setURLCategory}){
@@ -19,17 +19,17 @@ function Search({ user, urlTopic, setURLTopic, urlCategory, setURLCategory}){
     
     return(
         <div>
-            <form className = 'searchForm'>
+            <Form className ='searchForm' onSubmit={handleSearchTerm}>
                 <Input 
+                    // icon="search"
                     type="text" 
-                    placeholder='Search for a thread' 
+                    placeholder='Search for a thread...' 
                     name="search" 
                     size="large" 
                     onChange={handleInput}
                 />
-                
-                <button type='submit' onClick={handleSearchTerm}>Search</button>
-            </form>
+                <Button type='submit' onClick={handleSearchTerm} icon="search"></Button>
+            </Form>
             <br/>
             
             { searchTerm.length < 1 ? (

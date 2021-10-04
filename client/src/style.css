@@ -7,11 +7,26 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
 
+#root{
+  width: 960px;
+  margin:0 auto;
+}
+
 .hidden {
   display: none
+}
+
+.topic-container-header{
+  margin-top: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
 }

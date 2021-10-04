@@ -1,25 +1,25 @@
 import NavBar from "./NavBar";
 import { Link } from "react-router-dom";
+import { Container, Image } from "semantic-ui-react";
 
 function PageHeader({ user }){
     
     return(
         <>
-            <h1>hello from PageHeader</h1>
             <h1>
-                <h1 style={{ textAlign: "center", padding: "20px" }}>
+                <h1 style={{ textAlign: "center"}}>
                     <Link to="/">FOR'EM</Link>
                 </h1>
 
-                {user ? (
+                {/* {user ? (
                     <Link to={`/profile/${user.username}`}>    
-                        <img
+                        <Image
                             src={user.profile_picture}
                             alt="profile"
                             style={{
                                 float: "right",
                                 height: "50px",
-                                width: "50px",
+                                paddingRight:"25px"
                             }}
                         />
                     </Link>
@@ -34,31 +34,16 @@ function PageHeader({ user }){
                         style={{
                             float: "right",
                             height: "45px",
-                            width: "45px",
                         }}
                     />
-                </Link>
+                </Link> */}
             </h1>
 
-            {user ? null : (
-                <div
-                    style={{
-                        textAlign: "center",
-                        paddingRight: "300px",
-                        paddingLeft: "300px",
-                        paddingTop: "50px",
-                    }}
-                >   
-                    <div style={{ textAlign: "center", fontSize: "16px" }}>
-                        <Link to="/login">Login</Link>
-                    </div>
-                    <div style={{ textAlign: "center", fontSize: "16px" }}>
-                        <Link to="/signup">Signup</Link>
-                    </div>
-                </div>
-            )}
-
             <NavBar user={user}/>
+
+            
+
+            
         </>
     )
 }

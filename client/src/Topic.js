@@ -1,17 +1,18 @@
 import { Link } from "react-router-dom";
+import { Button } from "semantic-ui-react";
 
 function Topic ({ user, topic, title,  id, created, updated, created_at, updated_at, topicArray, setTopicArray, setURLTopic, urlCategory, functionalCategory, enableAdmin}) {
    
     function handleRemove() {
-        // fetch(`/topics/${id}`, {
-        //     method: "DELETE",
-        // })
-        // .then((res) => res.json())
-        // const topicsToDisplay = topicArray.filter((topic) => {
-        //     if (topic.id === id) return false
-        //     else return true
-        // });
-        // setTopicArray(topicsToDisplay);
+        fetch(`/topics/${id}`, {
+            method: "DELETE",
+        })
+        .then((res) => res.json())
+        const topicsToDisplay = topicArray.filter((topic) => {
+            if (topic.id === id) return false
+            else return true
+        });
+        setTopicArray(topicsToDisplay);
     }
 
     function handleClick () {
@@ -20,16 +21,19 @@ function Topic ({ user, topic, title,  id, created, updated, created_at, updated
     
     return (
         <>
-            <h1>hello from Topic</h1>
-            <div className="thread">
+            <div className="thread" style={{padding: "10px", border:"2px solid gray"}} >
                 <Link to={`/categories/${urlCategory}/${id}`}>
                     <h3 onClick={handleClick}>{title}</h3>
                 </Link>
+                <br/>
 
-                <p style={{fontWeight:"bold"}}>Last Post: {updated}</p>
+                <p style={{fontWeight:"bold"}}>Last Post: {updated ? updated : "Nothing posted yet"}</p>
                 <p style={{fontStyle:"italic"}}>Started: {created}</p>
-                <button className={enableAdmin ? "remove" : "hidden" } onClick={handleRemove}>Delete</button>
+                <div className={enableAdmin ? "remove" : "hidden" }>
+                    <Button negative onClick={handleRemove}>Delete</Button>
+                </div>
             </div>
+            <br/>
         </>
     )
 }

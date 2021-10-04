@@ -24,7 +24,6 @@ function App() {
 
     return (
         <>
-            <h1 style={{textAlign: 'center', marginLeft: 10, marginRight: 10}}>hello from App</h1>
             <PageHeader user={user}/>
             <Main user={user} setUser={setUser}/>
         </>

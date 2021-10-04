@@ -5,7 +5,6 @@ function NotYourProfile({ user, enableAdmin }) {
 
     }
 
-    console.log(user, 9)
     const categories = user.categories.map(category => {
         return category.subject
     }).join(", ");

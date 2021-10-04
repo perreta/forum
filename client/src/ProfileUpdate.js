@@ -24,9 +24,7 @@ function ProfileUpdate({ user, setUser, isClicked, setIsClicked }) {
             body: JSON.stringify({
                 name: name,
                 username: username,
-                password: password,
                 email: email,
-                password: password,
                 profile_picture: profilePicture,
                 bio: bio,
             }),
@@ -38,7 +36,6 @@ function ProfileUpdate({ user, setUser, isClicked, setIsClicked }) {
             } else {
                 setUser(user);
                 setIsClicked((prevIsClicked)=>!prevIsClicked)
-                console.log(user, "bye")
                 // history.push(`/profile/${user.username}`);
             }
         });
@@ -46,83 +43,82 @@ function ProfileUpdate({ user, setUser, isClicked, setIsClicked }) {
     
     function handlePassword(e){
         setPassword(e.target.value)
-        console.log(password)
     }
-
-    // console.log(user.password)
     
     const error = errors.map(error => {
         return error
     }).join(", ")
 
     return (
-        <div
-            style={{
-                marginLeft:"auto",
-                marginRight:"auto" ,
-                paddingLeft:"10px",
-                paddingRight:"10px",
-                paddingBottom: "100px",
-                disply: "flex",
-            }}
-        >
-        
-                <div style={{fontColor:"red"}}>
-                    <h3>
-                        {error}
-                    </h3>
-        
-                </div>
+        <>
+            <div
+                style={{
+                    marginLeft:"auto",
+                    marginRight:"auto" ,
+                    paddingLeft:"10px",
+                    paddingRight:"10px",
+                    paddingBottom: "12px",
+                    disply: "flex",
+                }}
+            >
             
-            <Form onSubmit={onSubmit}>
-                <Form.Field
-                    label="Name"
-                    value={name}
-                    control={Input}
-                    onChange={(e) => setName(e.target.value)}
-                />
+                    <div style={{fontColor:"red"}}>
+                        <h3>
+                            {error}
+                        </h3>
+            
+                    </div>
+                
+                <Form onSubmit={onSubmit}>
+                    <Form.Field
+                        label="Name"
+                        value={name}
+                        control={Input}
+                        onChange={(e) => setName(e.target.value)}
+                    />
 
-                <Form.Field
-                    label="Username"
-                    value={username}
-                    control={Input}
-                    onChange={(e) => setUsername(e.target.value)}
-                />
+                    <Form.Field
+                        label="Username"
+                        value={username}
+                        control={Input}
+                        onChange={(e) => setUsername(e.target.value)}
+                    />
 
-                <Form.Field
-                    label="Email"
-                    value={email}
-                    control={Input}
-                    onChange={(e) => setEmail(e.target.value)}
-                />
+                    <Form.Field
+                        label="Email"
+                        value={email}
+                        control={Input}
+                        onChange={(e) => setEmail(e.target.value)}
+                    />
 
-                <Form.Field
-                    label="Password"
-                    value={password}
-                    type="password"
-                    control={Input}
-                    onChange={handlePassword}
-                />
+                    {/* <Form.Field
+                        label="Password"
+                        value={password}
+                        type="password"
+                        control={Input}
+                        onChange={handlePassword}
+                    /> */}
 
-                <Form.Field
-                    label="Profile Picture"
-                    value={profilePicture}
-                    autoComplete="on"
-                    control={Input}
-                    onChange={(e) => setProfilePicture(e.target.value)}
-                />
+                    <Form.Field
+                        label="Profile Picture"
+                        value={profilePicture}
+                        autoComplete="on"
+                        control={Input}
+                        onChange={(e) => setProfilePicture(e.target.value)}
+                    />
 
-                <Form.Field
-                    label="Bio"
-                    value={bio}
-                    autoComplete="off"
-                    control={TextArea}
-                    onChange={(e) => setBio(e.target.value)}
-                />
+                    <Form.Field
+                        label="Bio"
+                        value={bio}
+                        autoComplete="off"
+                        control={TextArea}
+                        onChange={(e) => setBio(e.target.value)}
+                    />
 
-                <Button>Update</Button>
-        </Form>
-        </div>
+                    <Button>Update</Button>
+                </Form>
+            </div>
+        </>
     );
 }
 

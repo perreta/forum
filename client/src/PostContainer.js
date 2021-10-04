@@ -39,7 +39,6 @@ function PostContainer({ user, category, topic, setOtherUserProfile, enableAdmin
     
     return(
         <>
-            <h1>hello from PostContainer</h1>
             <div className="posts">{post}</div>
             {user ? <PostForm user={user} topic={topic} setPostArray={setPostArray}/> : null }
         </>

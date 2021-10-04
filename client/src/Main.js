@@ -31,7 +31,6 @@ function Main({ user, setUser }){
         .then((data) => setCategoryArray(data))
     }, []);
 
-    console.log(categoryArray)
     const category = categoryArray.map((category) => {
         return (
             <Category
@@ -56,19 +55,14 @@ function Main({ user, setUser }){
     })
 
     function capitalizeFirstLetter (string) {
-        return string.charAt(0).toUpperCase() + string.slice(1);
+        if (string === "tv")
+            return "TV"
+        else
+            return string.charAt(0).toUpperCase() + string.slice(1);
     }
-
-    console.log(urlCategory)
-    console.log(functionalCategory)
-    console.log(urlTopic)
 
     return(
         <>  
-            <div >
-                <h1>hello from Main</h1>
-            </div>
-
             <div
                 style={{
                     textAlign: "center",
@@ -107,7 +101,10 @@ function Main({ user, setUser }){
                     </Route>
 
                     <Route exact path={`/categories/${urlCategory}`}>
-                        <h1>{capitalizeFirstLetter(urlCategory)}</h1>
+                        <div className="topic-container-header">
+                            <img src={functionalCategory.picture} style={{maxWidth:150, maxHeight:150}}/>
+                            <h1>{capitalizeFirstLetter(urlCategory)}</h1>
+                        </div>
                         <TopicContainer 
                             user={user} 
                             urlCategory={urlCategory} 

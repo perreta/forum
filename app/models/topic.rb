@@ -8,6 +8,8 @@ class Topic < ApplicationRecord
     end
 
     def updated
-        self.posts.last.created_at.localtime.strftime("%b %e,  %l:%M %p")
+        if self.posts.exists?
+            self.posts.last.created_at.localtime.strftime("%b %e,  %l:%M %p")
+        end
     end
 end

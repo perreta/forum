@@ -8,6 +8,8 @@ class CategorySerializer < ActiveModel::Serializer
     end
 
     def updated
-        object.posts.last.created_at.localtime.strftime("%b %e,  %l:%M %p")
+        if object.posts.exists?
+            object.posts.last.created_at.localtime.strftime("%b %e,  %l:%M %p")
+        end
     end
 end

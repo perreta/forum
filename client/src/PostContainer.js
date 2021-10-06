@@ -5,10 +5,6 @@ import PostForm from "./PostForm";
 function PostContainer({ user, category, topic, setOtherUserProfile, enableAdmin, enableDarkMode, setCategoryArray }){
     
     const [postArray, setPostArray] = useState([]);
-    
-    useEffect(() => {
-        window.scrollTo(0, 0)
-    }, [])
 
     useEffect(() => {
         fetch("/posts")
@@ -17,6 +13,10 @@ function PostContainer({ user, category, topic, setOtherUserProfile, enableAdmin
             setPostArray(posts.filter(post => (post.topic.id === topic.id)))
         })
     }, [topic.id]);
+
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
 
     const post = postArray.map((post) => {
         return (

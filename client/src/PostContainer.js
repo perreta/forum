@@ -14,10 +14,6 @@ function PostContainer({ user, category, topic, setOtherUserProfile, enableAdmin
         })
     }, [topic.id]);
 
-    useEffect(() => {
-        window.scrollTo(0, 0)
-    }, [])
-
     const post = postArray.map((post) => {
         return (
             <Post

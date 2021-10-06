@@ -7,10 +7,6 @@ function CategoryContainer({ category, setCategoryArray, enableAdmin, enableDark
     const [isClicked, setIsClicked] = useState(false)
     const [newCategoryContent, setNewCategoryContent] = useState("")
     const [newCategoryPicture, setNewCategoryPicture] = useState("")
-    
-    useEffect(() => {
-        window.scrollTo(0, 0)
-    }, [])
 
     function handleSubmit(event) {
         event.preventDefault();

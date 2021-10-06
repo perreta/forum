@@ -10,10 +10,6 @@ function TopicContainer ({ user, urlCategory, functionalCategory, setURLTopic, e
     const [newTopicContent, setNewTopicContent] = useState("")
 
     useEffect(() => {
-        window.scrollTo(0, 0)
-    }, [])
-
-    useEffect(() => {
         fetch("/topics")
         .then((resp) => resp.json())
         .then((data) => {

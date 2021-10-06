@@ -9,7 +9,7 @@ function PageHeader({ user, enableAdmin, enableDarkMode }){
         <>
             <div className="logo-container">
                 <Link to="/">
-                    <img className="logo" src={enableDarkMode ? InvertedLogo : Logo} alt="logo" />
+                    <img id="logo" className="logo" src={enableDarkMode ? InvertedLogo : Logo} alt="logo" />
                 </Link>
             </div>
             <NavBar user={user} enableAdmin={enableAdmin} enableDarkMode={enableDarkMode}/>

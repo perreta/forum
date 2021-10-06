@@ -273,3 +273,7 @@ code {
 .edit{
   /* padding: 10px; */
 }
+
+.not-found{
+  padding: 150px
+}

@@ -3,7 +3,7 @@ import { Form, Button, TextArea } from "semantic-ui-react";
 import Topic from "./Topic.js"
 
 
-function TopicContainer ({ user, urlCategory, functionalCategory, setURLTopic, enableAdmin, enableDarkMode, setScroll}) {
+function TopicContainer ({ user, urlCategory, functionalCategory, setURLTopic, enableAdmin, enableDarkMode }) {
 
     const [topicArray, setTopicArray] = useState([])
     const [newTopicClick, setNewTopicClick] = useState(false)
@@ -14,7 +14,6 @@ function TopicContainer ({ user, urlCategory, functionalCategory, setURLTopic, e
         .then((resp) => resp.json())
         .then((data) => {
             setTopicArray(data.filter(thread => (thread.category.subject.toLowerCase() === urlCategory)))
-            setScroll((prevSetScroll) => !prevSetScroll)
         })
     }, [urlCategory]);
 
@@ -71,16 +70,15 @@ function TopicContainer ({ user, urlCategory, functionalCategory, setURLTopic, e
     function handleButtonClick(){
         setNewTopicClick(!newTopicClick)
     }
-
-
-
    
     return (
         <>
             <div className="threads">{topic}</div>
             <br/>
             {!newTopicClick ? ( 
-                <Button onClick={handleButtonClick}>New Topic</Button> 
+                <>
+                    <Button onClick={handleButtonClick}>New Topic</Button> 
+                </>
             ) : (
                 <Form id="topic-form" onSubmit={handleSubmit}>
                     <Form.Field

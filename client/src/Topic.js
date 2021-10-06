@@ -18,7 +18,7 @@ function Topic ({ user, topic, title,  id, created, updated, created_at, updated
     function handleClick () {
         setURLTopic(topic);
     }
-    
+
     return (
         <>
             <Link onClick={handleClick} to={`/categories/${urlCategory}/${id}`}>

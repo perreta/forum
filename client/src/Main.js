@@ -21,12 +21,6 @@ function Main({ user, setUser, enableAdmin, setEnableAdmin, enableDarkMode, setE
     const [urlTopic, setURLTopic] = useState({})
     const [urlCategory, setURLCategory] = useState("")
     const [functionalCategory, setFunctionalCategory] = useState({})
-    const [scroll, setScroll] = useState(false)
-
-
-    useEffect(() => {
-        window.scrollTo(0, 0)
-    }, [scroll])
 
     useEffect(() => {
         fetch("/categories")
@@ -116,7 +110,6 @@ function Main({ user, setUser, enableAdmin, setEnableAdmin, enableDarkMode, setE
                             setURLTopic={setURLTopic} 
                             enableAdmin={enableAdmin}
                             enableDarkMode={enableDarkMode}
-                            setScroll={setScroll}
                         />
                     </Route>
 
@@ -132,7 +125,6 @@ function Main({ user, setUser, enableAdmin, setEnableAdmin, enableDarkMode, setE
                             enableAdmin={enableAdmin}
                             enableDarkMode={enableDarkMode}
                             setCategoryArray={setCategoryArray}
-                            setScroll={setScroll}
                         />
                     </Route>
 

@@ -14,6 +14,7 @@ function TopicContainer ({ user, urlCategory, functionalCategory, setURLTopic, e
         .then((resp) => resp.json())
         .then((data) => {
             setTopicArray(data.filter(thread => (thread.category.subject.toLowerCase() === urlCategory)))
+            window.scrollTo(0, 0)
         })
     }, [urlCategory]);
 

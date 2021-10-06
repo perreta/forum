@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import Post from "./Post.js";
 import PostForm from "./PostForm";
 
-function PostContainer({ user, category, topic, setOtherUserProfile, enableAdmin, enableDarkMode, setCategoryArray }){
+function PostContainer({ user, category, topic, setOtherUserProfile, enableAdmin, enableDarkMode, setCategoryArray, setScroll }){
     
     const [postArray, setPostArray] = useState([]);
 
@@ -11,6 +11,7 @@ function PostContainer({ user, category, topic, setOtherUserProfile, enableAdmin
         .then((resp) => resp.json())
         .then((posts) => {
             setPostArray(posts.filter(post => (post.topic.id === topic.id)))
+            setScroll(!prevSetScroll)
         })
     }, [topic.id]);
 

@@ -10,7 +10,6 @@ import Login from "./Login";
 import Signup from "./Signup";
 import NotFound from "./NotFound"
 import Search from "./Search"
-import ScrollToTop from "./ScrollToTop"
 
 import { Switch, Route } from "react-router-dom";
 
@@ -22,7 +21,12 @@ function Main({ user, setUser, enableAdmin, setEnableAdmin, enableDarkMode, setE
     const [urlTopic, setURLTopic] = useState({})
     const [urlCategory, setURLCategory] = useState("")
     const [functionalCategory, setFunctionalCategory] = useState({})
+    const [scroll, setScroll] = useState(false)
 
+
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [scroll])
 
     useEffect(() => {
         fetch("/categories")
@@ -71,98 +75,98 @@ function Main({ user, setUser, enableAdmin, setEnableAdmin, enableDarkMode, setE
                     paddingBottom: "200px",
                 }}
             >
-                <ScrollToTop>
-                    <Switch>
-                        <Route exact path="/">
-                            <Home user={user} enableDarkMode={enableDarkMode}/>
-                        </Route>
+                <Switch>
+                    <Route exact path="/">
+                        <Home user={user} enableDarkMode={enableDarkMode}/>
+                    </Route>
 
-                        <Route exact path="/login">
-                            <Login onLogin={setUser} />
-                        </Route>
+                    <Route exact path="/login">
+                        <Login onLogin={setUser} />
+                    </Route>
 
-                        <Route exact path="/signup">
-                            <Signup onLogin={setUser} />
-                        </Route>
+                    <Route exact path="/signup">
+                        <Signup onLogin={setUser} />
+                    </Route>
 
-                        <Route exact path="/categories">
-                            <h1 className={enableDarkMode ? "dark-categories-header" : "categories-header"}> 
-                                    Categories:
+                    <Route exact path="/categories">
+                        <h1 className={enableDarkMode ? "dark-categories-header" : "categories-header"}> 
+                                Categories:
+                        </h1>
+                        <CategoryContainer 
+                            user={user} 
+                            category={category} 
+                            categoryArray={categoryArray} 
+                            setCategoryArray={setCategoryArray} 
+                            enableAdmin={enableAdmin}
+                            enableDarkMode={enableDarkMode}
+                        />
+                    </Route>
+
+                    <Route exact path={`/categories/${functionalCategory.subject}`}>
+                        <div className={enableDarkMode ? "dark-topic-container-header" : "topic-container-header"}>
+                            <img src={functionalCategory.picture} alt="category" style={{maxWidth:150, maxHeight:150}}/>
+                            <h1>
+                                {capitalizeFirstLetter(urlCategory)}
                             </h1>
-                            <CategoryContainer 
-                                user={user} 
-                                category={category} 
-                                categoryArray={categoryArray} 
-                                setCategoryArray={setCategoryArray} 
-                                enableAdmin={enableAdmin}
-                                enableDarkMode={enableDarkMode}
+                        </div>
+                        <TopicContainer 
+                            user={user} 
+                            urlCategory={urlCategory} 
+                            functionalCategory={functionalCategory} 
+                            setURLTopic={setURLTopic} 
+                            enableAdmin={enableAdmin}
+                            enableDarkMode={enableDarkMode}
+                            setScroll={setScroll}
+                        />
+                    </Route>
+
+                    <Route exact path={`/categories/${urlCategory}/${urlTopic.id}`}>
+                        <div className={enableDarkMode ? "dark-thread-title" : "thread-title"}>
+                            <h1>{urlTopic.title}</h1>
+                        </div>
+                        <PostContainer 
+                            user={user} 
+                            category={urlCategory} 
+                            topic={urlTopic} 
+                            setOtherUserProfile={setOtherUserProfile} 
+                            enableAdmin={enableAdmin}
+                            enableDarkMode={enableDarkMode}
+                            setCategoryArray={setCategoryArray}
+                            setScroll={setScroll}
+                        />
+                    </Route>
+
+                    <Route exact path={user ? `/profile/${user.username}`: '/'}>
+                        <Profile 
+                            user={user} 
+                            setUser={setUser} 
+                            enableAdmin={enableAdmin}
+                            setEnableAdmin={setEnableAdmin}
+                            enableDarkMode={enableDarkMode}
+                            setEnableDarkMode={setEnableDarkMode}
+                            categoryArray={categoryArray}
+                        />
+                    </Route>
+
+                    <Route exact path={`/profile/${otherUserProfile.username}`}>
+                        <NotYourProfile 
+                            user={otherUserProfile} 
+                            setUser={setUser} 
+                            enableAdmin={enableAdmin} 
+                            setEnableAdmin={setEnableAdmin}
+                            setEnableDarkMode={setEnableDarkMode}
+                            categoryArray={categoryArray}
                             />
-                        </Route>
+                    </Route>
 
-                        <Route exact path={`/categories/${functionalCategory.subject}`}>
-                            <div className={enableDarkMode ? "dark-topic-container-header" : "topic-container-header"}>
-                                <img src={functionalCategory.picture} alt="category" style={{maxWidth:150, maxHeight:150}}/>
-                                <h1>
-                                    {capitalizeFirstLetter(urlCategory)}
-                                </h1>
-                            </div>
-                            <TopicContainer 
-                                user={user} 
-                                urlCategory={urlCategory} 
-                                functionalCategory={functionalCategory} 
-                                setURLTopic={setURLTopic} 
-                                enableAdmin={enableAdmin}
-                                enableDarkMode={enableDarkMode}
-                            />
-                        </Route>
+                    <Route exact path="/search">
+                        <Search user={user} setURLTopic={setURLTopic} urlTopic={urlTopic} urlCategory={urlCategory} setURLCategory={setURLCategory} enableDarkMode={enableDarkMode}/>
+                    </Route>
 
-                        <Route exact path={`/categories/${urlCategory}/${urlTopic.id}`}>
-                            <div className={enableDarkMode ? "dark-thread-title" : "thread-title"}>
-                                <h1>{urlTopic.title}</h1>
-                            </div>
-                            <PostContainer 
-                                user={user} 
-                                category={urlCategory} 
-                                topic={urlTopic} 
-                                setOtherUserProfile={setOtherUserProfile} 
-                                enableAdmin={enableAdmin}
-                                enableDarkMode={enableDarkMode}
-                                setCategoryArray={setCategoryArray}
-                            />
-                        </Route>
-
-                        <Route exact path={user ? `/profile/${user.username}`: '/'}>
-                            <Profile 
-                                user={user} 
-                                setUser={setUser} 
-                                enableAdmin={enableAdmin}
-                                setEnableAdmin={setEnableAdmin}
-                                enableDarkMode={enableDarkMode}
-                                setEnableDarkMode={setEnableDarkMode}
-                                categoryArray={categoryArray}
-                            />
-                        </Route>
-
-                        <Route exact path={`/profile/${otherUserProfile.username}`}>
-                            <NotYourProfile 
-                                user={otherUserProfile} 
-                                setUser={setUser} 
-                                enableAdmin={enableAdmin} 
-                                setEnableAdmin={setEnableAdmin}
-                                setEnableDarkMode={setEnableDarkMode}
-                                categoryArray={categoryArray}
-                                />
-                        </Route>
-
-                        <Route exact path="/search">
-                            <Search user={user} setURLTopic={setURLTopic} urlTopic={urlTopic} urlCategory={urlCategory} setURLCategory={setURLCategory} enableDarkMode={enableDarkMode}/>
-                        </Route>
-
-                        <Route exact path="/*">
-                            <NotFound />
-                        </Route> 
-                    </Switch>
-                </ScrollToTop>
+                    <Route exact path="/*">
+                        <NotFound/>
+                    </Route> 
+                </Switch>
             </div>  
         </>
     )

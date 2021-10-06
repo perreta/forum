@@ -1,5 +1,5 @@
 import { Form, Button } from "semantic-ui-react";
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 
 function CategoryContainer({ category, setCategoryArray, enableAdmin, enableDarkMode }) {
@@ -8,6 +8,10 @@ function CategoryContainer({ category, setCategoryArray, enableAdmin, enableDark
     const [newCategoryContent, setNewCategoryContent] = useState("")
     const [newCategoryPicture, setNewCategoryPicture] = useState("")
     
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
+
     function handleSubmit(event) {
         event.preventDefault();
         const newCategory = {

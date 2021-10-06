@@ -6,7 +6,6 @@ function Category({ category, subject, picture, updated, setURLCategory, setFunc
         const urlCategory = subject.toLowerCase()
         setURLCategory(urlCategory)
         setFunctionalCategory(category)
-        window.scrollTo(0, 0)
     }
     
 

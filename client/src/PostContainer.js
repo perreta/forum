@@ -7,6 +7,10 @@ function PostContainer({ user, category, topic, setOtherUserProfile, enableAdmin
     const [postArray, setPostArray] = useState([]);
     
     useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
+
+    useEffect(() => {
         fetch("/posts")
         .then((resp) => resp.json())
         .then((posts) => {

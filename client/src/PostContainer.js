@@ -11,7 +11,7 @@ function PostContainer({ user, category, topic, setOtherUserProfile, enableAdmin
         .then((resp) => resp.json())
         .then((posts) => {
             setPostArray(posts.filter(post => (post.topic.id === topic.id)))
-            setScroll(!prevSetScroll)
+            setScroll((prevSetScroll) => !prevSetScroll)
         })
     }, [topic.id]);
 

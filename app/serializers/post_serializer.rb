@@ -1,5 +1,5 @@
 class PostSerializer < ActiveModel::Serializer
-    attributes :id, :content, :created_at, :updated_at, :created, :updated
+    attributes :id, :content, :postCategory, :created_at, :updated_at, :created, :updated
     has_one :user
     has_one :topic
 
@@ -10,4 +10,9 @@ class PostSerializer < ActiveModel::Serializer
     def updated
         object.updated_at.localtime.strftime("%b %e,  %l:%M %p")
     end
+
+    def postCategory
+        object.topic.category.subject
+    end
+
 end

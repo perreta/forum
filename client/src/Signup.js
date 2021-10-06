@@ -46,71 +46,63 @@ function Signup({ onLogin }) {
         });
     }
     return (
-        <div style={{paddingRight:"300px", paddingLeft:"300px", paddingTop:"100px", paddingBottom:"100px"}}>
-            <Header as="h2">Sign Up</Header>
+        <div style={{paddingLeft:"200px", paddingRight:"200px", paddingTop:"100px", paddingBottom:"100px"}}>
             {errors.map(error => <h2 stylel={{ fontColor: "red" }}>{error}</h2>)}
             <Form onSubmit={handleSubmit} >
-                <Form.Group  widths='equal' >
-                    <Form.Field
-                        fluid
-                        id="form-input-control-fullname"
-                        control={Input}
-                        label="Full Name"
-                        name="name"
-                        placeholder="Full Name"
-                        autoComplete="off"
-                        onChange={inputOnChange}
-                    />
-                    <Form.Field
-                        fluid
-                        id="form-input-control-username"
-                        control={Input}
-                        label="Username"
-                        name="username"
-                        placeholder="Username"
-                        autoComplete="off"
-                        onChange={inputOnChange}
-                    />
-                    <Form.Field
-                        fluid
-                        id="form-input-control-email"
-                        control={Input}
-                        label="Email"
-                        name="email"
-                        placeholder="Email"
-                        autoComplete="off"
-                        onChange={inputOnChange}
-                    />
-                    <Form.Field
-                        fluid
-                        id="form-input-control-password"
-                        control={Input}
-                        label="Password"
-                        name="password"
-                        placeholder="Password"
-                        type="password"
-                        autoComplete="off"
-                        onChange={inputOnChange}
-                    />
-                    <Form.Field
-                        fluid
-                        id="form-input-control-image"
-                        control={Input}
-                        label="Image URL"
-                        name="profile_picture"
-                        placeholder="Image URL"
-                        onChange={inputOnChange}
-                    />
-                    <Form.Field
-                        fluid
-                        id="form-input-control-bio"
-                        control={TextArea}
-                        label="Bio"
-                        name="bio"
-                        placeholder="Bio"
-                        onChange={inputOnChange}
-                    />
-                </Form.Group>
+            <Header as="h2">Sign Up</Header>
+                <Form.Field required
+                    id="form-input-control-fullname"
+                    control={Input}
+                    label="Full Name"
+                    name="name"
+                    placeholder="Full Name"
+                    autoComplete="off"
+                    onChange={inputOnChange}
+                />
+                <Form.Field required
+                    id="form-input-control-username"
+                    control={Input}
+                    label="Username"
+                    name="username"
+                    placeholder="Username"
+                    autoComplete="off"
+                    onChange={inputOnChange}
+                />
+                <Form.Field required
+                    id="form-input-control-email"
+                    control={Input}
+                    label="Email"
+                    name="email"
+                    placeholder="Email"
+                    autoComplete="off"
+                    onChange={inputOnChange}
+                />
+                <Form.Field required
+                    id="form-input-control-password"
+                    control={Input}
+                    label="Password"
+                    name="password"
+                    placeholder="Password"
+                    type="password"
+                    autoComplete="off"
+                    onChange={inputOnChange}
+                />
+                <Form.Field 
+                    id="form-input-control-image"
+                    control={Input}
+                    label="Image URL"
+                    name="profile_picture"
+                    placeholder="Image URL"
+                    onChange={inputOnChange}
+                />
+                <Form.Field
+                    id="form-input-control-bio"
+                    control={TextArea}
+                    label="Bio"
+                    name="bio"
+                    placeholder="Bio"
+                    onChange={inputOnChange}
+                />
                 <Button type="submit">Sign Up</Button>
             </Form>
     </div>

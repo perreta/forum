@@ -1,3 +1,11 @@
+html,body{
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+  overflow-x: hidden; 
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -5,8 +13,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  
 }
-
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
@@ -14,12 +22,72 @@ code {
 }
 
 #root{
-  width: 960px;
   margin:0 auto;
+}
+
+.dark-mode{
+  background-color: #2A2A2A
+}
+
+.application{
+  background-color: #DAFAFF;
+}
+
+.admin-application{
+  background-color: #9FFFA1;
+  /* background-color: #57E75E; */
+}
+
+.nav-bar{
+  width: 85%;
+  margin:0 auto;
+}
+
+.dark-nav-bar{
+  width: 85%;
+  margin:0 auto;
+  padding-bottom: 2px;
+}
+
+.enable-dark-mode{
+  padding-bottom: 10px;
+}
+
+.disable-dark-mode{
+  padding-bottom: 10px;
 }
 
 .hidden {
   display: none
+}
+
+.search-bar{
+  padding: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo {
+  width: 125px;
+}
+
+.logo-container{
+  display: flex;
+  justify-content: center;
+  padding-bottom: 10px;
+}
+
+.categories-header{
+  padding-top: 15px;
+  padding-bottom: 5px;
+  color: black;
+}
+
+.dark-categories-header{
+  padding-top: 15px;
+  padding-bottom: 5px;
+  color: white;
 }
 
 .topic-container-header{
@@ -28,5 +96,180 @@ code {
   display: flex;
   justify-content: center;
   align-items: center;
+}
 
+.dark-topic-container-header{
+  color: white;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.user-details{
+  margin-top: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dark-user-details{
+  background-color: #1b1c1d;
+  color: white;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.category-container{
+  background-color: white;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border: 2px solid gray;
+}
+
+.dark-category-container{
+  background-color: #1b1c1d;
+  color: white;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border: 2px solid gray;
+}
+
+.last-posted-category{
+  font-weight: bold;
+  color: black;
+}
+
+.dark-last-posted-category{
+  font-weight: bold;
+  color: white;
+}
+
+.thread{
+  background-color: white;
+  color: black;
+  padding: 10px;
+  border: 2px solid gray;
+}
+
+.dark-thread{
+  background-color: #1b1c1d;
+  color: white;
+  padding: 10px;
+  border: 2px solid gray;
+}
+
+.profile{
+  background-color: white;
+  color: black;
+  border: 2px solid gray;
+  margin-top: 30px;
+}
+
+.dark-profile{
+  background-color: #1b1c1d;
+  color: white;
+  border: 2px solid gray;
+  margin-top: 30px;
+}
+
+.profile-container{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.profile-topper{
+  padding: 20px;
+  color: black;
+}
+
+.dark-profile-topper{
+  padding: 20px;
+  color: white;
+}
+
+.profile-content{
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+}
+
+.dark-profile-content{
+  color: white;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+}
+
+.not-your-profile-content{
+  color: black;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  padding-bottom: 10px;
+}
+
+.not-your-dark-profile-content{
+  padding-bottom: 10px;
+  color: white;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  
+}
+
+.edit-window{
+  margin-top: 10px;
+}
+
+.delete-user-button{
+  padding-bottom: 10px;
+}
+
+.post{
+  background-color: white;
+}
+
+.dark-post{
+  background-color: #1b1c1d;
+  color: white;
+}
+
+.welcome{
+  color: black;
+}
+
+.dark-welcome{
+  color: white;
+}
+
+.thread-title{
+  color: black;
+  padding: 25px;
+}
+
+.dark-thread-title{
+  color: white;
+  padding: 25px;
+}
+
+.admin-delete{
+  padding-top: 10px;
+  padding-bottom: 5px;
+}
+
+.delete-user-button{
+  padding-bottom: 10px;
+}
+
+.edit{
+  /* padding: 10px; */
 }

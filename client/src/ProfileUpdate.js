@@ -3,15 +3,13 @@ import React, { useState } from "react";
 import { Form, Input, Button, TextArea } from "semantic-ui-react";
 
 
-function ProfileUpdate({ user, setUser, isClicked, setIsClicked }) {
+function ProfileUpdate({ user, setUser, isClicked, setIsClicked, enableDarkMode}) {
     const [errors, setErrors] = useState([]);
     const [name, setName] = useState(user.name);
     const [username, setUsername] = useState(user.username);
     const [email, setEmail] = useState(user.email);
-    const [password, setPassword] = useState(user.password);
     const [profilePicture, setProfilePicture] = useState(user.profile_picture);
     const [bio, setBio] = useState(user.bio);
-    // const history = useHistory();
 
     function onSubmit(e) {
         e.preventDefault();
@@ -35,14 +33,10 @@ function ProfileUpdate({ user, setUser, isClicked, setIsClicked }) {
                 setErrors(user.errors);
             } else {
                 setUser(user);
+                setErrors([])
                 setIsClicked((prevIsClicked)=>!prevIsClicked)
-                // history.push(`/profile/${user.username}`);
             }
         });
-    }
-    
-    function handlePassword(e){
-        setPassword(e.target.value)
     }
     
     const error = errors.map(error => {
@@ -55,68 +49,102 @@ function ProfileUpdate({ user, setUser, isClicked, setIsClicked }) {
                 style={{
                     marginLeft:"auto",
                     marginRight:"auto" ,
-                    paddingLeft:"10px",
-                    paddingRight:"10px",
                     paddingBottom: "12px",
                     disply: "flex",
+                    maxWidth:200
                 }}
             >
             
-                    <div style={{fontColor:"red"}}>
+                    <div style={{color:"red"}}>
                         <h3>
                             {error}
                         </h3>
-            
                     </div>
                 
-                <Form onSubmit={onSubmit}>
-                    <Form.Field
-                        label="Name"
-                        value={name}
-                        control={Input}
-                        onChange={(e) => setName(e.target.value)}
-                    />
+                {enableDarkMode ? (
+                    <Form inverted onSubmit={onSubmit}>
+                        <Form.Field
+                            label="Name"
+                            value={name}
+                            control={Input}
+                            onChange={(e) => setName(e.target.value)}
+                        />
 
-                    <Form.Field
-                        label="Username"
-                        value={username}
-                        control={Input}
-                        onChange={(e) => setUsername(e.target.value)}
-                    />
+                        <Form.Field
+                            label="Username"
+                            value={username}
+                            control={Input}
+                            onChange={(e) => setUsername(e.target.value)}
+                        />
 
-                    <Form.Field
-                        label="Email"
-                        value={email}
-                        control={Input}
-                        onChange={(e) => setEmail(e.target.value)}
-                    />
+                        <Form.Field
+                            label="Email"
+                            value={email}
+                            control={Input}
+                            onChange={(e) => setEmail(e.target.value)}
+                        />
 
-                    {/* <Form.Field
-                        label="Password"
-                        value={password}
-                        type="password"
-                        control={Input}
-                        onChange={handlePassword}
-                    /> */}
+                        <Form.Field
+                            label="Profile Picture"
+                            value={profilePicture}
+                            autoComplete="on"
+                            control={Input}
+                            onChange={(e) => setProfilePicture(e.target.value)}
+                        />
 
-                    <Form.Field
-                        label="Profile Picture"
-                        value={profilePicture}
-                        autoComplete="on"
-                        control={Input}
-                        onChange={(e) => setProfilePicture(e.target.value)}
-                    />
+                        <Form.Field
+                            label="Bio"
+                            value={bio}
+                            autoComplete="off"
+                            control={TextArea}
+                            onChange={(e) => setBio(e.target.value)}
+                        />
 
-                    <Form.Field
-                        label="Bio"
-                        value={bio}
-                        autoComplete="off"
-                        control={TextArea}
-                        onChange={(e) => setBio(e.target.value)}
-                    />
+                        <Button color="green">Update</Button>
+                    </Form>
+                ) : (
+                    <Form onSubmit={onSubmit}>
+                        <Form.Field
+                            label="Name"
+                            value={name}
+                            control={Input}
+                            onChange={(e) => setName(e.target.value)}
+                        />
 
-                    <Button>Update</Button>
-                </Form>
+                        <Form.Field
+                            label="Username"
+                            value={username}
+                            control={Input}
+                            onChange={(e) => setUsername(e.target.value)}
+                        />
+
+                        <Form.Field
+                            label="Email"
+                            value={email}
+                            control={Input}
+                            onChange={(e) => setEmail(e.target.value)}
+                        />
+
+                        <Form.Field
+                            label="Profile Picture"
+                            value={profilePicture}
+                            autoComplete="on"
+                            control={Input}
+                            onChange={(e) => setProfilePicture(e.target.value)}
+                        />
+
+                        <Form.Field
+                            label="Bio"
+                            value={bio}
+                            autoComplete="off"
+                            control={TextArea}
+                            onChange={(e) => setBio(e.target.value)}
+                        />
+
+                        <Button color="green">Update</Button>
+                    </Form>
+                )}
+                    
             </div>
         </>
     );

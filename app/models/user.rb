@@ -16,6 +16,10 @@ class User < ApplicationRecord
         @enforce_password_validation = true
     end
 
+    def userCategories
+        self.categories.uniq
+    end
+
     private
 
     def password_required?

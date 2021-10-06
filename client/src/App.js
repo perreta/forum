@@ -10,7 +10,10 @@ import Main from "./Main"
 
 function App() {
 
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState(null)
+    const [enableAdmin, setEnableAdmin] = useState(false)
+    const [enableDarkMode, setEnableDarkMode] = useState(false)
+
 
     // auto-login
     useEffect(() => {
@@ -23,10 +26,13 @@ function App() {
     }, []);
 
     return (
-        <>
-            <PageHeader user={user}/>
-            <Main user={user} setUser={setUser}/>
-        </>
+        <div className={enableAdmin ? "admin-application" : "application"}>
+            <div className={enableDarkMode ? "dark-mode" : "regular"}>
+                <PageHeader user={user} enableAdmin={enableAdmin} enableDarkMode={enableDarkMode}/>
+                <Main user={user} setUser={setUser} enableAdmin={enableAdmin} setEnableAdmin={setEnableAdmin} enableDarkMode={enableDarkMode} setEnableDarkMode={setEnableDarkMode}/>
+            </div>
+        </div>
+        
     );
 }
 export default App;

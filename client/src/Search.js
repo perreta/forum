@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Form, Input, Button } from 'semantic-ui-react'
 import SearchRender from "./SearchRender";
 
-function Search({ user, urlTopic, setURLTopic, urlCategory, setURLCategory}){
+function Search({ user, urlTopic, setURLTopic, urlCategory, setURLCategory, enableDarkMode}){
     const [searchTerm, setSearchTerm] = useState("")
     const [searchInput, setSearchInput] = useState("")
 
@@ -19,23 +19,34 @@ function Search({ user, urlTopic, setURLTopic, urlCategory, setURLCategory}){
     
     return(
         <div>
-            <Form className ='searchForm' onSubmit={handleSearchTerm}>
-                <Input 
-                    // icon="search"
-                    type="text" 
-                    placeholder='Search for a thread...' 
-                    name="search" 
-                    size="large" 
-                    onChange={handleInput}
-                />
-                <Button type='submit' onClick={handleSearchTerm} icon="search"></Button>
-            </Form>
-            <br/>
-            
+            <div className="search-bar">
+                <Form className ='searchForm' onSubmit={handleSearchTerm}>
+                    <Input 
+                        type="text" 
+                        placeholder='Search for a thread...' 
+                        name="search" 
+                        size="huge" 
+                        onChange={handleInput}
+                        />
+                    <Button size="huge" type='submit' onClick={handleSearchTerm} icon="search"></Button>
+                </Form>
+                <br/>
+            </div>
             { searchTerm.length < 1 ? (
-                null 
+                <>
+                    <br/> 
+                    <br/> 
+                    <br/> 
+                    <br/> 
+                    <br/> 
+                    <br/> 
+                    <br/> 
+                    <br/> 
+                    <br/> 
+                    <br/> 
+                </>
             ) : ( 
-                <SearchRender user={user} searchTerm={searchTerm} urlTopic={urlTopic} setURLTopic={setURLTopic} urlCategory={urlCategory} setURLCategory={setURLCategory}/>
+                <SearchRender user={user} searchTerm={searchTerm} urlTopic={urlTopic} setURLTopic={setURLTopic} urlCategory={urlCategory} setURLCategory={setURLCategory} enableDarkMode={enableDarkMode}/>
             )}
             
         </div>

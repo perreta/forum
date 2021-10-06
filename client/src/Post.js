@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { Form, Container, Button, TextArea, Header, Image } from "semantic-ui-react";
+import { Form, Container, Button, TextArea, Divider, Image } from "semantic-ui-react";
 import { Link } from "react-router-dom";
+import Empty from "./images/empty-profile-picture.png"
 
-function Post({ user, post, topic, id, content, username, avatar, created, updated, createdAt, updatedAt, postArray, setPostArray, setOtherUserProfile, enableAdmin }){
+function Post({ user, post, topic, id, content, username, avatar, created, updated, createdAt, updatedAt, postArray, setPostArray, setOtherUserProfile, enableAdmin, enableDarkMode }){
     
     const [isClicked, setIsClicked] = useState(false);
     const [updatedText, setUpdatedText] = useState(content);
-    const [adminDeleted, setAdminDeleted] = useState(false)
 
     function handleRemove() {
         fetch(`/posts/${id}`, {
@@ -59,7 +59,7 @@ function Post({ user, post, topic, id, content, username, avatar, created, updat
     return(
         <Container>
             <div
-                className="post"
+                className={enableDarkMode ? "dark-post" : "post"}
                 style={{
                     justifyContent: "center",
                     padding: 5,
@@ -69,29 +69,38 @@ function Post({ user, post, topic, id, content, username, avatar, created, updat
                 <div className={"user-details"}>
                     <Link to={`/profile/${username}`} onClick={handleSetOtherUser}>
                         <Image
-                            src={avatar} 
+                            src={avatar ? avatar : Empty} 
                             alt="user"
                             style={{ 
                                 maxWidth: 75, 
                                 marginLeft:"auto", 
-                                marginRight:"auto" 
+                                marginRight:"auto",
+                                paddingRight: 10 
                             }}
                         />
-                        <Header as="h3">
-                            {username}
-                        </Header>
                     </Link>
+                    <Divider/>
+                    <div>
+                        <Link to={`/profile/${username}`} onClick={handleSetOtherUser}>
+                            <h3>
+                                {username}
+                            </h3>
+                        </Link>
+                        {updatedAt === createdAt ? (
+                            <p>
+                                Posted: {created}
+                            </p>
+                        ) : (
+                            <p>
+                                Updated: {updated}
+                            </p>
+                        )}
+                    </div>
+                    
                 </div>
+                
 
-                {updatedAt === createdAt ? (
-                    <Header style={{fontWeight:"lighter", fontSize: "12px" }}>
-                        Posted: {created}
-                    </Header>
-                ) : (
-                    <Header style={{fontWeight:"lighter", fontSize: "12px" }}>
-                        Updated: {updated}
-                    </Header>
-                )}
+                
 
                 {!isClicked ? (
                     <>    
@@ -106,39 +115,68 @@ function Post({ user, post, topic, id, content, username, avatar, created, updat
                         }}>
                             {content}
                         </p>
-                        <br/>
 
-                        <div className={enableAdmin ? "admin-delete" : "hidden"}>
-                            <Button onClick={handleRemove}>Admin Delete</Button>
-                        </div>
-                        <br/>
+                        {/* <div className={enableAdmin ? "admin-delete" : "hidden"}>
+                            <Button negative onClick={handleRemove}>Admin Delete</Button>
+                        </div> */}
 
                     </>
                 ) : (
-                    <Form 
-                        onSubmit={handleEdit} 
-                        style={{
-                            marginTop:"20px", 
-                            marginLeft:"auto",
-                            marginRight:"auto", 
-                            paddingLeft:"10px",
-                            paddingRight:"10px" 
-                        }}
-                    >
-                        <Form.Field
-                            label="Update Post:"
-                            style={{fontWeight:"lighter", fontSize: "20px"}}
-                            onChange={handleInputChange} 
-                            type="text" 
-                            control={TextArea}
-                            value={updatedText}
-                        />
-                        <Button secondary>Update</Button>
-                        <Button  onClick={handleEditClick}>Cancel</Button>
-                        <Button negative onClick={handleRemove} className="remove">
-                            Delete
-                        </Button>
-                    </Form>
+                    <>
+                        <div className={enableDarkMode ? "hidden" : "regular-edit-form"}>
+                            <Form 
+                                onSubmit={handleEdit} 
+                                style={{
+                                    marginTop:"20px", 
+                                    marginLeft:"auto",
+                                    marginRight:"auto", 
+                                    paddingLeft:"10px",
+                                    paddingRight:"10px" 
+                                }}
+                            >
+                                <Form.Field
+                                    label="Update Post:"
+                                    style={{fontWeight:"lighter", fontSize: "20px"}}
+                                    onChange={handleInputChange} 
+                                    type="text" 
+                                    control={TextArea}
+                                    value={updatedText}
+                                />
+                                <Button color="green">Update</Button>
+                                <Button  onClick={handleEditClick}>Cancel</Button>
+                                <Button negative onClick={handleRemove} className="remove">
+                                    Delete
+                                </Button>
+                            </Form>
+                        </div>
+                        <div className={enableDarkMode ? "dark-edit-form" : "hidden"}>
+                            <Form inverted
+                                onSubmit={handleEdit} 
+                                style={{
+                                    marginTop:"20px", 
+                                    marginLeft:"auto",
+                                    marginRight:"auto", 
+                                    paddingLeft:"10px",
+                                    paddingRight:"10px" 
+                                }}
+                            >
+                                <Form.Field
+                                    label="Update Post:"
+                                    style={{fontWeight:"lighter", fontSize: "20px"}}
+                                    onChange={handleInputChange} 
+                                    type="text" 
+                                    control={TextArea}
+                                    value={updatedText}
+                                />
+                                <Button color="green">Update</Button>
+                                <Button  onClick={handleEditClick}>Cancel</Button>
+                                <Button negative onClick={handleRemove} className="remove">
+                                    Delete
+                                </Button>
+                            </Form>
+                        </div>
+                        
+                    </>
                 )}
                 
                 {user.username === username ? (
@@ -153,6 +191,9 @@ function Post({ user, post, topic, id, content, username, avatar, created, updat
                 ) : (
                     null
                 )}
+                <div className={enableAdmin ? "admin-delete" : "hidden"}>
+                    <Button negative onClick={handleRemove}>Admin Delete</Button>
+                </div>
 
             </div>
             <br/>

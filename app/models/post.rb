@@ -9,4 +9,8 @@ class Post < ApplicationRecord
     def updated
         self.updated_at.localtime.strftime("%b %e,  %l:%M %p")
     end
+
+    def postCategory
+        self.topic.category.subject
+    end
 end

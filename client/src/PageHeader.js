@@ -1,49 +1,18 @@
 import NavBar from "./NavBar";
 import { Link } from "react-router-dom";
-import { Container, Image } from "semantic-ui-react";
+import Logo from "./images/forem-small-chin.png"
+import InvertedLogo from "./images/logo-inverted.png"
 
-function PageHeader({ user }){
+function PageHeader({ user, enableAdmin, enableDarkMode }){
     
     return(
         <>
-            <h1>
-                <h1 style={{ textAlign: "center"}}>
-                    <Link to="/">FOR'EM</Link>
-                </h1>
-
-                {/* {user ? (
-                    <Link to={`/profile/${user.username}`}>    
-                        <Image
-                            src={user.profile_picture}
-                            alt="profile"
-                            style={{
-                                float: "right",
-                                height: "50px",
-                                paddingRight:"25px"
-                            }}
-                        />
-                    </Link>
-                ) : (
-                    null
-                )}
-                
-                <Link to="/search">    
-                    <img
-                        src="https://i.imgur.com/7A9gGKJ.png"
-                        alt="search"
-                        style={{
-                            float: "right",
-                            height: "45px",
-                        }}
-                    />
-                </Link> */}
-            </h1>
-
-            <NavBar user={user}/>
-
-            
-
-            
+            <div className="logo-container">
+                <Link to="/">
+                    <img className="logo" src={enableDarkMode ? InvertedLogo : Logo} alt="logo" />
+                </Link>
+            </div>
+            <NavBar user={user} enableAdmin={enableAdmin} enableDarkMode={enableDarkMode}/>
         </>
     )
 }

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import Post from "./Post.js";
 import PostForm from "./PostForm";
 
-function PostContainer({ user, category, topic, setOtherUserProfile, enableAdmin }){
+function PostContainer({ user, category, topic, setOtherUserProfile, enableAdmin, enableDarkMode, setCategoryArray }){
     
     const [postArray, setPostArray] = useState([]);
     
@@ -12,7 +12,7 @@ function PostContainer({ user, category, topic, setOtherUserProfile, enableAdmin
         .then((posts) => {
             setPostArray(posts.filter(post => (post.topic.id === topic.id)))
         })
-    }, []);
+    }, [topic.id]);
 
     const post = postArray.map((post) => {
         return (
@@ -33,6 +33,7 @@ function PostContainer({ user, category, topic, setOtherUserProfile, enableAdmin
                 topic={topic}
                 setOtherUserProfile={setOtherUserProfile}
                 enableAdmin={enableAdmin}
+                enableDarkMode={enableDarkMode}
             />
         );
     });
@@ -40,7 +41,7 @@ function PostContainer({ user, category, topic, setOtherUserProfile, enableAdmin
     return(
         <>
             <div className="posts">{post}</div>
-            {user ? <PostForm user={user} topic={topic} setPostArray={setPostArray}/> : null }
+            {user ? <PostForm user={user} topic={topic} setPostArray={setPostArray} setCategoryArray={setCategoryArray} enableDarkMode={enableDarkMode}/> : null }
         </>
     )
 }

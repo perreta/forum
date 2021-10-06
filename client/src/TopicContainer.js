@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react"
-import { Form, Button, Checkbox, Image, TextArea } from "semantic-ui-react";
+import { Form, Button, TextArea } from "semantic-ui-react";
 import Topic from "./Topic.js"
 
 
-function TopicContainer ({ user, urlCategory, functionalCategory, setURLTopic, enableAdmin }) {
+function TopicContainer ({ user, urlCategory, functionalCategory, setURLTopic, enableAdmin, enableDarkMode }) {
 
     const [topicArray, setTopicArray] = useState([])
     const [newTopicClick, setNewTopicClick] = useState(false)
@@ -15,30 +15,7 @@ function TopicContainer ({ user, urlCategory, functionalCategory, setURLTopic, e
         .then((data) => {
             setTopicArray(data.filter(thread => (thread.category.subject.toLowerCase() === urlCategory)))
         })
-    }, []);
-
-    // const topic = functionalCategory.topics.map((topic) => {
-    //     return (
-    //         <Topic
-    //             user={user}
-    //             topic={topic}
-    //             title={topic.title}
-    //             id={topic.id}
-    //             key={topic.id}
-    //             created={topic.created}
-    //             updated={topic.updated}
-    //             createdAt={topic.created_at}
-    //             updatedAt={topic.updated_at}
-    //             topicArray={topicArray}
-    //             setTopicArray={setTopicArray}
-    //             setURLTopic={setURLTopic}
-    //             urlCategory={urlCategory}
-    //             functionalCategory={functionalCategory}
-    //             enableAdmin={enableAdmin}
-    //         />
-    //     );
-    // });
-
+    }, [urlCategory]);
 
     const topic = topicArray.map((topic) => {
         return (
@@ -58,6 +35,7 @@ function TopicContainer ({ user, urlCategory, functionalCategory, setURLTopic, e
                 urlCategory={urlCategory}
                 functionalCategory={functionalCategory}
                 enableAdmin={enableAdmin}
+                enableDarkMode={enableDarkMode}
             />
         );
     });
@@ -78,9 +56,10 @@ function TopicContainer ({ user, urlCategory, functionalCategory, setURLTopic, e
         })
         .then((resp) => resp.json())
         .then((data) => {
-            setTopicArray((prevTopics) => [...prevTopics, data]);
+            setTopicArray((prevTopics) => [...prevTopics, data])
         });
         event.target.reset();
+        
         setNewTopicClick(!newTopicClick)
     }
 
@@ -97,7 +76,7 @@ function TopicContainer ({ user, urlCategory, functionalCategory, setURLTopic, e
    
     return (
         <>
-            <div className="Threads">{topic}</div>
+            <div className="threads">{topic}</div>
             <br/>
             {!newTopicClick ? ( 
                 <Button onClick={handleButtonClick}>New Topic</Button> 

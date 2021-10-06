@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import SearchTopic from "./SearchTopic"
 
-function SearchRender({ user, searchTerm, urlTopic, setURLTopic, urlCategory, setURLCategory }){
+function SearchRender({ user, searchTerm, urlTopic, setURLTopic, urlCategory, setURLCategory, enableDarkMode}){
     
     const [searchArray, setSearchArray] = useState([])
 
@@ -38,6 +38,7 @@ function SearchRender({ user, searchTerm, urlTopic, setURLTopic, urlCategory, se
                 setURLTopic={setURLTopic}
                 urlCategory={urlCategory}
                 setURLCategory={setURLCategory}
+                enableDarkMode={enableDarkMode}
             />
         );
     });

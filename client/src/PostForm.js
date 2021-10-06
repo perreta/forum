@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Form, TextArea, Button } from "semantic-ui-react";
 
-function PostForm({ setPostArray, user, topic }) {
+function PostForm({ setPostArray, setCategoryArray, user, topic, enableDarkMode }) {
     
     const [content, setContent] = useState("");
 
@@ -22,6 +22,9 @@ function PostForm({ setPostArray, user, topic }) {
         .then((resp) => resp.json())
         .then((data) => {
             setPostArray((prevPosts) => [...prevPosts, data]);
+            fetch("/categories")
+            .then((resp) => resp.json())
+            .then((data) => setCategoryArray(data))
         });
         event.target.reset();
     }
@@ -32,20 +35,37 @@ function PostForm({ setPostArray, user, topic }) {
 
     return (
         <div style={{textAlign:"center", paddingRight:"200px",  paddingLeft:"200px", paddingBottom: "50px" }}>
-            <Form id="post-form" onSubmit={handleSubmit}>
-                <Form.Field
-                    label="New Message:"
-                    name="input"
-                    autoComplete="off"
-                    type="text"
-                    placeholder="Start Writing..."
-                    control={TextArea}
-                    onChange={handleInputChange}
-                />
-                <Button type="submit" className="submit-button">
-                    Submit
-                </Button>
-            </Form>
+            { enableDarkMode ? (
+                <Form inverted id="post-form" onSubmit={handleSubmit}>
+                    <Form.Field
+                        label="New Message:"
+                        name="input"
+                        autoComplete="off"
+                        type="text"
+                        placeholder="Start Writing..."
+                        control={TextArea}
+                        onChange={handleInputChange}
+                    />
+                    <Button type="submit" className="submit-button">
+                        Submit
+                    </Button>
+                </Form> 
+            ) : ( 
+                <Form id="post-form" onSubmit={handleSubmit}>
+                    <Form.Field
+                        label="New Message:"
+                        name="input"
+                        autoComplete="off"
+                        type="text"
+                        placeholder="Start Writing..."
+                        control={TextArea}
+                        onChange={handleInputChange}
+                    />
+                    <Button type="submit" className="submit-button">
+                        Submit
+                    </Button>
+                </Form> 
+            )}
         </div>
     );
 }

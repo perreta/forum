@@ -1,8 +1,8 @@
-import { Form, Button, TextArea, Image, Container } from "semantic-ui-react";
+import { Form, Button } from "semantic-ui-react";
 import { useState } from "react"
 
 
-function CategoryContainer({ category, setCategoryArray, enableAdmin }) {
+function CategoryContainer({ category, setCategoryArray, enableAdmin, enableDarkMode }) {
     
     const [isClicked, setIsClicked] = useState(false)
     const [newCategoryContent, setNewCategoryContent] = useState("")
@@ -26,7 +26,7 @@ function CategoryContainer({ category, setCategoryArray, enableAdmin }) {
             setCategoryArray((prevCategories) => [...prevCategories, data]);
         });
         event.target.reset();
-        setIsClicked(false) //!!!!!!!!!!
+        setIsClicked(false)
     }
     
     function handleNewCategoryChange(event) {
@@ -42,44 +42,74 @@ function CategoryContainer({ category, setCategoryArray, enableAdmin }) {
     }
     
     return (
-        <>
+        <div>
             <div className="categories">{category}</div>
             {enableAdmin ? (
-                <div className={isClicked ? "hidden" : "new-category-button"}>
+                <div className={ isClicked ? "hidden" : "new-category-button" }>
                     <Button onClick={handleButtonClick} >Add Category</Button>
                 </div>
             ) : (
                 null
             )}
             <div className={isClicked ? "category-form" : "hidden"}>
-                <Form id="category-form" onSubmit={handleSubmit}>
-                    <Form.Field
-                        label="New Category:"
-                        name="input"
-                        autoComplete="off"
-                        type="text"
-                        placeholder="Name?"
-                        control="input"
-                        onChange={handleNewCategoryChange}
-                    /> 
-                    <Form.Field
-                        name="input"
-                        autoComplete="off"
-                        type="text"
-                        placeholder="Picture?"
-                        control="input"
-                        onChange={handleNewCategoryPictureChange}
-                    /> 
-                    <Button type="submit" className="submit-button">
-                        Submit
-                    </Button>
-                    <Button type="button" className="cancel-button" onClick={handleButtonClick}>
-                        Cancel
-                    </Button>
+                <div className={enableDarkMode ? "hidden" : "regular-category-form"}>
+                    <Form id="category-form" onSubmit={handleSubmit}>
+                        <Form.Field
+                            label="New Category:"
+                            name="input"
+                            autoComplete="off"
+                            type="text"
+                            placeholder="Name?"
+                            control="input"
+                            onChange={handleNewCategoryChange}
+                        /> 
+                        <Form.Field
+                            name="input"
+                            autoComplete="off"
+                            type="text"
+                            placeholder="Picture?"
+                            control="input"
+                            onChange={handleNewCategoryPictureChange}
+                        /> 
+                        <Button type="submit" className="submit-button">
+                            Submit
+                        </Button>
+                        <Button type="button" className="cancel-button" onClick={handleButtonClick}>
+                            Cancel
+                        </Button>
 
-                </Form>
+                    </Form>
+                </div>
+                <div className={enableDarkMode ? "dark-category-form" : "hidden"}>
+                    <Form inverted id="category-form" onSubmit={handleSubmit}>
+                        <Form.Field
+                            label="New Category:"
+                            name="input"
+                            autoComplete="off"
+                            type="text"
+                            placeholder="Name?"
+                            control="input"
+                            onChange={handleNewCategoryChange}
+                        /> 
+                        <Form.Field
+                            name="input"
+                            autoComplete="off"
+                            type="text"
+                            placeholder="Picture?"
+                            control="input"
+                            onChange={handleNewCategoryPictureChange}
+                        /> 
+                        <Button type="submit" className="submit-button">
+                            Submit
+                        </Button>
+                        <Button type="button" className="cancel-button" onClick={handleButtonClick}>
+                            Cancel
+                        </Button>
+
+                    </Form>
+                </div>
             </div>
-        </>
+        </div>
     )
 }
 export default CategoryContainer

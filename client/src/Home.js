@@ -1,13 +1,32 @@
 import { Container } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 
-function Home ({ user }) {
+function Home ({ user, enableDarkMode }) {
     return(
         <div>
-            <h1>
-                <h1>
-                {user ? `Welcome, ${user.name}` : "WELCOME TO FOR'EM"}
-                </h1>
+            <h1 className={enableDarkMode ? "dark-welcome" : "welcome"}>
+                <br/>
+                <br/>
+                <br/>
+                {user ? (
+                    <>
+                        <h1>
+                            Welcome, {user.name}
+                        </h1>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                    </>
+                ) : (
+                    <>
+                        <h1>
+                            WELCOME TO FOR'EM
+                        </h1>
+                    </> 
+                )}
+                
             </h1>
             {user ? null : (
                 <div
@@ -19,11 +38,19 @@ function Home ({ user }) {
                 >   
                     <Container>
                         <div style={{ textAlign: "center", fontSize: "16px" }}>
-                            <Link to="/login">Login</Link>
+                            <Link to="/login">
+                                <h2>
+                                    Login
+                                </h2>
+                            </Link>
                         </div>
                         <br/>
                         <div style={{ textAlign: "center", fontSize: "16px" }}>
-                            <Link to="/signup">Signup</Link>
+                            <Link to="/signup">
+                                <h2>    
+                                    Signup
+                                </h2>
+                            </Link>
                         </div>
                     </Container>
                 </div>

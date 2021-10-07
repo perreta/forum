@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 function Home ({ user, enableDarkMode }) {
     return(
-        <div>
+        <div className="home-page">
             <h1 className={enableDarkMode ? "dark-welcome" : "welcome"}>
                 <br/>
                 <br/>
@@ -21,9 +21,11 @@ function Home ({ user, enableDarkMode }) {
                     </>
                 ) : (
                     <>
+                        <br/>
                         <h1>
                             WELCOME TO FOR'EM
                         </h1>
+                        <br/>
                     </> 
                 )}
                 
@@ -55,6 +57,7 @@ function Home ({ user, enableDarkMode }) {
                     </Container>
                 </div>
             )}
+            
         </div>
 
     )

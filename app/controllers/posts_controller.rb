@@ -28,7 +28,7 @@ class PostsController < ApplicationController
 
     # DELETE /posts/1
     def destroy
-        post = @current_user.posts.find(params[:id])
+        post = Post.all.find_by(id: params[:id])
         post.destroy
         head :no_content
     end

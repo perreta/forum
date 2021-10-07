@@ -39,10 +39,10 @@ function PostContainer({ user, category, topic, setOtherUserProfile, enableAdmin
     });
     
     return(
-        <>
+        <div className="post-container">
             <div className="posts">{post}</div>
             {user ? <PostForm user={user} topic={topic} setPostArray={setPostArray} setCategoryArray={setCategoryArray} enableDarkMode={enableDarkMode}/> : null }
-        </>
+        </div>
     )
 }
 export default PostContainer

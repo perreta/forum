@@ -61,14 +61,7 @@ function Main({ user, setUser, enableAdmin, setEnableAdmin, enableDarkMode, setE
 
     return(
         <>  
-            <div
-                style={{
-                    textAlign: "center",
-                    paddingRight: "200px",
-                    paddingLeft: "200px",
-                    paddingBottom: "200px",
-                }}
-            >
+            <div className="main-container">
                 <Switch>
                     <Route exact path="/">
                         <Home user={user} enableDarkMode={enableDarkMode}/>
@@ -103,6 +96,7 @@ function Main({ user, setUser, enableAdmin, setEnableAdmin, enableDarkMode, setE
                                 {capitalizeFirstLetter(urlCategory)}
                             </h1>
                         </div>
+
                         <TopicContainer 
                             user={user} 
                             urlCategory={urlCategory} 
@@ -126,6 +120,8 @@ function Main({ user, setUser, enableAdmin, setEnableAdmin, enableDarkMode, setE
                             enableDarkMode={enableDarkMode}
                             setCategoryArray={setCategoryArray}
                         />
+                        <br/>
+                        <br/>
                     </Route>
 
                     <Route exact path={user ? `/profile/${user.username}`: '/'}>
@@ -138,6 +134,7 @@ function Main({ user, setUser, enableAdmin, setEnableAdmin, enableDarkMode, setE
                             setEnableDarkMode={setEnableDarkMode}
                             categoryArray={categoryArray}
                         />
+                        <br/>
                     </Route>
 
                     <Route exact path={`/profile/${otherUserProfile.username}`}>
@@ -145,10 +142,22 @@ function Main({ user, setUser, enableAdmin, setEnableAdmin, enableDarkMode, setE
                             user={otherUserProfile} 
                             setUser={setUser} 
                             enableAdmin={enableAdmin} 
+                            enableDarkMode={enableDarkMode}
                             setEnableAdmin={setEnableAdmin}
                             setEnableDarkMode={setEnableDarkMode}
                             categoryArray={categoryArray}
                             />
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
                     </Route>
 
                     <Route exact path="/search">

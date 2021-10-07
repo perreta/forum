@@ -16,6 +16,7 @@ function Post({ user, post, topic, id, content, username, avatar, created, updat
             if (post.id === id) return false;
             else return true;
         });
+        console.log(postsToDisplay)
         setPostArray(postsToDisplay);
     }
 
@@ -109,17 +110,12 @@ function Post({ user, post, topic, id, content, username, avatar, created, updat
                                 fontSize: "20px", 
                                 marginLeft:"auto", 
                                 marginRight:"auto",
-                                marginBottom:"0px",
+                                marginBottom:"5px",
                                 paddingLeft:"10px", 
                                 paddingRight:"10px" 
                         }}>
                             {content}
                         </p>
-
-                        {/* <div className={enableAdmin ? "admin-delete" : "hidden"}>
-                            <Button negative onClick={handleRemove}>Admin Delete</Button>
-                        </div> */}
-
                     </>
                 ) : (
                     <>
@@ -179,21 +175,23 @@ function Post({ user, post, topic, id, content, username, avatar, created, updat
                     </>
                 )}
                 
-                {user.username === username ? (
-                    <div className={!isClicked ? "edit" : "hidden"}>
-                        <Button
-                            onClick={handleEditClick}
-                        >
-                            Edit
-                        </Button>
-                        
+                    { user ? (
+                        <div className={user.username === username ? "edit-button-area" : "hidden" }>
+                            <div className={!isClicked ? "edit" : "hidden"}>
+                                <Button
+                                    onClick={handleEditClick}
+                                >
+                                    Edit
+                                </Button>
+                                
+                            </div>
+                        </div>
+                    ) : (
+                        null
+                    )}
+                    <div className={enableAdmin ? "admin-delete" : "hidden"}>
+                        <Button negative onClick={handleRemove}>Admin Delete</Button>
                     </div>
-                ) : (
-                    null
-                )}
-                <div className={enableAdmin ? "admin-delete" : "hidden"}>
-                    <Button negative onClick={handleRemove}>Admin Delete</Button>
-                </div>
 
             </div>
             <br/>

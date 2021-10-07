@@ -18,7 +18,7 @@ function Search({ user, urlTopic, setURLTopic, urlCategory, setURLCategory, enab
     }
     
     return(
-        <div>
+        <div className="search-render">
             <div className="search-bar">
                 <Form className ='searchForm' onSubmit={handleSearchTerm}>
                     <Input 
@@ -33,22 +33,11 @@ function Search({ user, urlTopic, setURLTopic, urlCategory, setURLCategory, enab
                 <br/>
             </div>
             { searchTerm.length < 1 ? (
-                <>
-                    <br/> 
-                    <br/> 
-                    <br/> 
-                    <br/> 
-                    <br/> 
-                    <br/> 
-                    <br/> 
-                    <br/> 
-                    <br/> 
-                    <br/> 
-                </>
+                null
             ) : ( 
                 <SearchRender user={user} searchTerm={searchTerm} urlTopic={urlTopic} setURLTopic={setURLTopic} urlCategory={urlCategory} setURLCategory={setURLCategory} enableDarkMode={enableDarkMode}/>
             )}
-            
+           
         </div>
     )
 }

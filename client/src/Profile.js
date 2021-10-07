@@ -142,7 +142,6 @@ function Profile({ user, setUser, enableAdmin, setEnableAdmin, enableDarkMode, s
 
 
             
-
         </div>
     )
 }

@@ -42,7 +42,7 @@ function CategoryContainer({ category, setCategoryArray, enableAdmin, enableDark
     }
     
     return (
-        <div>
+        <div className="container">
             <div className="categories">{category}</div>
             {enableAdmin ? (
                 <div className={ isClicked ? "hidden" : "new-category-button" }>

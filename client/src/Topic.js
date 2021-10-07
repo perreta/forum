@@ -21,21 +21,19 @@ function Topic ({ user, topic, title,  id, created, updated, created_at, updated
 
     return (
         <>
-            <Link onClick={handleClick} to={`/categories/${urlCategory}/${id}`}>
 
-                <div className={enableDarkMode ? "dark-thread" : "thread"} >
-                    <Link to={`/categories/${urlCategory}/${id}`}>
-                        <h2 onClick={handleClick}>{title}</h2>
-                    </Link>
+            <div className={enableDarkMode ? "dark-thread" : "thread"} >
+                <Link to={`/categories/${urlCategory}/${id}`}>
+                    <h2 onClick={handleClick}>{title}</h2>
+                </Link>
 
-                    <h4 style={{fontWeight:"bold"}}>Last Post: {updated ? updated : "Nothing posted yet"}</h4>
-                    <p style={{fontStyle:"italic"}}>Started: {created}</p>
-                    <div className={enableAdmin ? "remove" : "hidden" }>
-                        <Button negative onClick={handleRemove}>Delete</Button>
-                    </div>
-                    
+                <h4 style={{fontWeight:"bold"}}>Last Post: {updated ? updated : "Nothing posted yet"}</h4>
+                <p style={{fontStyle:"italic"}}>Started: {created}</p>
+                <div className={enableAdmin ? "remove" : "hidden" }>
+                    <Button negative onClick={handleRemove}>Delete</Button>
                 </div>
-            </Link>
+                
+            </div>
             <br/>
         </>
     )

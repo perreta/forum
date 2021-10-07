@@ -72,12 +72,15 @@ function TopicContainer ({ user, urlCategory, functionalCategory, setURLTopic, e
     }
    
     return (
-        <>
+        <div className="topic-container">
             <div className="threads">{topic}</div>
-            <br/>
+            
             {!newTopicClick ? ( 
                 <>
-                    <Button onClick={handleButtonClick}>New Topic</Button> 
+                    <div className={user ? "new-topic-button" : "hidden"}>
+                        <Button onClick={handleButtonClick}>New Topic</Button> 
+                    </div>
+                    <br/>
                 </>
             ) : (
                 <Form id="topic-form" onSubmit={handleSubmit}>
@@ -98,7 +101,7 @@ function TopicContainer ({ user, urlCategory, functionalCategory, setURLTopic, e
                     </Button>
                 </Form>
             )}
-        </>
+        </div>
     )
 }
 export default TopicContainer

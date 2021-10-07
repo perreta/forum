@@ -19,7 +19,7 @@ function SearchRender({ user, searchTerm, urlTopic, setURLTopic, urlCategory, se
     }, [searchTerm]);
 
     console.log(searchArray)
-
+    
     const topic = searchArray.map((topic) => {
         return (
             <SearchTopic
@@ -43,8 +43,28 @@ function SearchRender({ user, searchTerm, urlTopic, setURLTopic, urlCategory, se
         );
     });
 
+    console.log(topic)
+
     return(
-        <div className="Threads">{topic}</div>
+        <div className="Threads">
+            {topic.length === 0 ? (
+                <div>
+                    <br/>
+                    <hr/>
+                    <br/>
+                    <h1>
+                        Sorry, no search results found
+                    </h1>
+                    <br/>
+                    <br/>
+                    <br/>
+                </div>    
+            ) : (
+                <>
+                    {topic}
+                </>     
+            )}
+        </div>
     )
 }
 

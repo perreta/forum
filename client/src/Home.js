@@ -13,19 +13,12 @@ function Home ({ user, enableDarkMode }) {
                         <h1>
                             Welcome, {user.name}
                         </h1>
-                        <br/>
-                        <br/>
-                        <br/>
-                        <br/>
-                        <br/>
                     </>
                 ) : (
                     <>
-                        <br/>
                         <h1>
                             WELCOME TO FOR'EM
                         </h1>
-                        <br/>
                     </> 
                 )}
                 

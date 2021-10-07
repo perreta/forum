@@ -6,8 +6,6 @@ function Home ({ user, enableDarkMode }) {
         <div className="home-page">
             <h1 className={enableDarkMode ? "dark-welcome" : "welcome"}>
                 <br/>
-                <br/>
-                <br/>
                 {user ? (
                     <>
                         <h1>

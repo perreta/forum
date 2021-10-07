@@ -41,7 +41,7 @@ function Login({onLogin}) {
     };
 
     return (
-        <div style={{paddingRight:"300px", paddingLeft:"300px", paddingTop:"100px", paddingBottom:"200px"}}>
+        <div style={{paddingRight:"300px", paddingLeft:"300px", paddingTop:"40px"}}>
           <Form onSubmit={loginSubmit} float="right">
           <Header as="h2">Login</Header>
          

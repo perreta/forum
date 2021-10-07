@@ -46,7 +46,7 @@ function Signup({ onLogin }) {
         });
     }
     return (
-        <div style={{paddingLeft:"200px", paddingRight:"200px", paddingTop:"100px", paddingBottom:"100px"}}>
+        <div style={{paddingLeft:"200px", paddingRight:"200px", paddingTop:"40px"}}>
             {errors.map(error => <h2 style={{ color: "red" }}>{error}</h2>)}
             <Form onSubmit={handleSubmit} >
             <Header as="h2">Sign Up</Header>

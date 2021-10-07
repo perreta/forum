@@ -12,4 +12,5 @@ class Topic < ApplicationRecord
             self.posts.last.created_at.localtime.strftime("%b %e,  %l:%M %p")
         end
     end
+
 end
